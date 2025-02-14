@@ -181,13 +181,15 @@ getUserLoginName() {
 			read -p "$(echo -e "User Login Name Already Exists!\nEnter User's Login Name: ")" usr_login	
 		elif [[ -z "$usr_login" ]]; then
 			read -p "$(echo -e "User Login Name Can't Be EMPTY !\nEnter User's Login Name: ")" usr_login
-		# TODO: Add LOGIN name regexp checks
+		elif [[ "$usr_login" =~ ^[a-z][-a-z0-9]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))[a-z0-9]}$ ]]; then
+		    # Login Name is OK
+		    break
 		else
-			# User Doesn't Exist
-			break
+		    read -p "$(echo -e "ERROR: Login Name RegExp Format Not Allowed\nEnter User's Login Name: ")" usr_login
 		fi
 	done
-	eval "$1=$usr_login"
+	local -n loginName="$1"
+	loginName="$usr_login"
 }
 
 getValidUserPass() {
