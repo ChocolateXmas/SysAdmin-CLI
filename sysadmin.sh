@@ -153,16 +153,25 @@ getUserList() {
 	cat /etc/passwd | grep "/home" | cut -s -d : -f1
 }
 
+printUserList() {
+    local usr_list="$(getUserList)"
+    echo "List of Users:"
+    printf ">> %s\n" $(echo -e "$usr_list") 
+}
 getUserDispName() {
 	read -p "Enter User's Display Name: " usr_name
 	while true; do
 		if [[ -z "$usr_name" ]]; then
-			read -p "$(echo "User Display Name Can't Be Empty! Try Again . . .\nEnter User's Display Name: ")" usr_name
+			read -p "$(echo -e "User Display Name Can't Be Empty! Try Again . . .\nEnter User's Display Name: ")" usr_name
+		elif [[ "$usr_name" =~ ^[a-zA-Z0-9][-a-zA-Z0-9._\'\ ]{0,$(($(getconf LOGIN_NAME_MAX)-2))}[a-zA-Z0-9]$ ]]; then
+		    # Display Name OK
+		    break
 		else
-			break
+		    read -p "$(echo -e "ERROR: Display Name RegExp Format Not Allowed\nEnter User's Display Name: ")" usr_name
 		fi
 	done
-	eval "$1=$usr_name"
+	local -n dispName="$1"
+	dispName="$usr_name"
 }
 
 getUserLoginName() {
@@ -172,6 +181,7 @@ getUserLoginName() {
 			read -p "$(echo -e "User Login Name Already Exists!\nEnter User's Login Name: ")" usr_login	
 		elif [[ -z "$usr_login" ]]; then
 			read -p "$(echo -e "User Login Name Can't Be EMPTY !\nEnter User's Login Name: ")" usr_login
+		# TODO: Add LOGIN name regexp checks
 		else
 			# User Doesn't Exist
 			break
@@ -212,7 +222,7 @@ selector_UserMan() {
 		case "$choice" in
 			# List All Users
 			"1")
-				getUserList
+				printUserList
 				;;
 			# Add New User
 			"2")
@@ -290,8 +300,9 @@ selector_UserMan() {
 				;;
 			# Delete User
 			"3")
-				local usr_list=$(getUserList)
-				echo -e "List of Users:\n$usr_list"
+				#local usr_list=$(getUserList)
+				printUserList
+				# echo -e "List of Users:\n$usr_list"
 				while true; do
 					read -p "Which User To Delete? > " usr2del 
 					if [[ -z "$usr2del" ]]; then
