@@ -158,9 +158,9 @@ getUserList() {
 isUserExist() {
     if id "$1" &>/dev/null ; then
         # User Not Found / Not Exist
-        echo 0
+        return 0
     else
-        echo 1
+        return 1
     fi
 }
 
@@ -243,6 +243,18 @@ getValidUserPass() {
 	done
 }
 
+validateUserData() {
+    if [[ -z "$1" ]]; then
+		echo "No USER entered, try again."
+		return 1
+	fi
+	if ! isUserExist "$1" ; then
+	    printUserNotFound "$usr2del"
+		return 1
+	fi
+	return 0
+}
+
 selector_UserMan() {
 	local choice=""
 	local isChoiceFound=0
@@ -322,24 +334,10 @@ selector_UserMan() {
 				;;
 			# Delete User
 			"3")
-				#local usr_list=$(getUserList)
 				printUserList
-				# echo -e "List of Users:\n$usr_list"
 				while true; do
-					read -p "Which User To Delete? > " usr2del 
-					if [[ -z "$usr2del" ]]; then
-						echo "No USER entered, try again."
-						continue
-					fi
-					# TODO: Make a function to check if a user name exist
-					if [[ $(isUserExist "$usr2del") -ne 0 ]]; then
-					    echo "'$usr2del' NOT Found! try again."
-						continue
-					fi
-					#if ! echo "$usr_list" | grep -qw $usr2del ; then
-					#	echo "'$usr2del' NOT Found! try again."
-					#	continue
-					#fi
+					read -p "Which User To Delete? > " usr2del
+					if ! validateUserData "$usr2del" ; then continue; fi
 					read -p "Are you sure you want to DELETE '$usr2del'? (y/N)" confirm
 					if [[ "$confirm" =~ ^[Yy]$ ]]; then
 						sudo userdel -r "$usr2del"
@@ -362,10 +360,7 @@ selector_UserMan() {
 				while true; do
 				    echo -n "Select User: "
 					read usr2mod
-					if ! echo "$usr_list" | grep -qw "$usr2mod" ; then
-                        echo -e "User <$usr2mod> Not FOUND ! Try Again . . .\n"
-                        continue					    
-					fi
+					if ! validateUserData "$usr2mod" ; then continue; fi
 					local title="MODS"
 					printf "~ %-s - %-20s" "$title" "$usr2mod"
 					printf "~%.0s" "$(( ${#title} + ${#usr2mod} ))"
