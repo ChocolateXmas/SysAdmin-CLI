@@ -149,8 +149,18 @@ Select:
 	echo -e "$msg"
 }
 
+# User Management Functions
 getUserList() {
 	cat /etc/passwd | grep "/home" | cut -s -d : -f1
+}
+
+isUserExist() {
+    if ! echo "$1" | grep -qw getUserList ; then
+        # User Not Found ! (1 :: FALSE)
+        echo 1
+    fi
+    # User Found (0 :: TRUE)
+    echo 0
 }
 
 printUserList() {
@@ -158,16 +168,31 @@ printUserList() {
     echo "List of Users:"
     printf ">> %s\n" $(echo -e "$usr_list") 
 }
+
+printUserNotFound() { echo "ERROR: User <$1> NOT FOUND !"; } # $1 => User Display/Login Name
+printUserExist() { echo "ERROR: User <$1> Already Exists !"; } # $1 => User <Name>
+printUserEmpty() { echo -e "ERROR: User's $1 Name Can't Be Empty!\n"; } # $1 => "Display / Login" 
+printUserRegExp() { echo -e "ERROR: $1 Name RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
+
 getUserDispName() {
 	read -p "Enter User's Display Name: " usr_name
 	while true; do
 		if [[ -z "$usr_name" ]]; then
-			read -p "$(echo -e "User Display Name Can't Be Empty! Try Again . . .\nEnter User's Display Name: ")" usr_name
-		elif [[ "$usr_name" =~ ^[a-zA-Z0-9][-a-zA-Z0-9._\'\ ]{0,$(($(getconf LOGIN_NAME_MAX)-2))}[a-zA-Z0-9]$ ]]; then
+			printUserEmpty "Display"
+			read -p "$(echo -e "ALERT, Display Name CAN Be Empty.\nKeep Display Name Empty? (y/N)")" emptyDispChoice
+			emptyDispChoice="${emptyDispChoice-N}"
+			if [[ "$emptyDispChoice" =~ ^[Yy]$ ]]; then
+			    usr_name="" #Empty User Display Name
+			    break
+			else
+			    read -p "$(echo -e "Enter User's Display Name: ")" usr_name
+			fi
+		elif [[ "$usr_name" =~ ^[a-zA-Z0-9][-a-zA-Z0-9._\'\ ]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}[a-zA-Z0-9]$ ]]; then
 		    # Display Name OK
 		    break
 		else
-		    read -p "$(echo -e "ERROR: Display Name RegExp Format Not Allowed\nEnter User's Display Name: ")" usr_name
+		    printUserRegExp "Display"
+		    read -p "$(echo -e "Enter User's Display Name: ")" usr_name
 		fi
 	done
 	local -n dispName="$1"
@@ -178,20 +203,24 @@ getUserLoginName() {
 	read -p "Enter User's Login Name: " usr_login
 	while true; do
 		if id "$usr_login" &>/dev/null; then
-			read -p "$(echo -e "User Login Name Already Exists!\nEnter User's Login Name: ")" usr_login	
+		    printUserExist "$usr_login"
+			read -p "$(echo -e "Enter User's Login Name: ")" usr_login
 		elif [[ -z "$usr_login" ]]; then
-			read -p "$(echo -e "User Login Name Can't Be EMPTY !\nEnter User's Login Name: ")" usr_login
+			printUserEmpty "Login"
+			read -p "$(echo -e "Enter User's Login Name: ")" usr_login
 		elif [[ "$usr_login" =~ ^[a-z][-a-z0-9]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}[a-z0-9]$ ]]; then
 		    # Login Name is OK
 		    break
 		else
-		    read -p "$(echo -e "ERROR: Login Name RegExp Format Not Allowed\nEnter User's Login Name: ")" usr_login
+		    printUserRegExp "Login"
+		    read -p "$(echo -e "Enter User's Login Name: ")" usr_login
 		fi
 	done
 	local -n loginName="$1"
 	loginName="$usr_login"
 }
 
+# NOT USED - DEPRECATED (Future usage may be)
 getValidUserPass() {
 	local validPass="$1"
 	while true; do
@@ -241,18 +270,14 @@ selector_UserMan() {
 					echo "Just to make things sure :-)"
 					echo "Display Name: $usr_name"
 					echo "Login Name: $usr_login"
-					#printf "Password: %s\n" "$(printf '*%.0s' $(seq ${#usr_pass}))"
 					read -p "Do You Want To Change Anything Before Adding? (y/N) " changeChoice
 					changeChoice="${changeChoice-N}"
-					if [[ ! "$changeChoice" =~ ^[Yy]$ ]]; then
-						break
-					fi
+					if [[ ! "$changeChoice" =~ ^[Yy]$ ]]; then break; fi
 					printf "\nChange:\n"
 					printf "  %-3s - %-25s\n" "(1)" "User Display Name"
 					printf "       %-s\n" "Current: $usr_name"
 					printf "  %-3s - %-25s\n" "(2)" "User Login Name"
 					printf "       %-s\n" "Current: $usr_login"
-					#printf "  %-3s - %-25s\n" "(3)" "User Password"
 					read -p "Select: " categoryChange
 					case "$categoryChange" in 
 						"1")
@@ -261,9 +286,6 @@ selector_UserMan() {
 						"2")
 							getUserLoginName usr_login
 							;;
-						#3) 
-						#	getValidUserPass usr_pass
-						#	;;
 						*)
 							printNotFound categoryChange
 							;;
@@ -280,9 +302,6 @@ selector_UserMan() {
 							echo "User <$usr_login> Creation Has FAILED !"
 							break
 						fi
-						#echo -e "$usr_pass\n$usr_pass" | sudo passwd "$usr_login" > /dev/null 2>&1
-						#echo -e "$usr_pass\n$usr_pass" | sudo passwd "$usr_login" > pass_log.txt 2>&1
-						#echo "$usr_login:$usr_pass" | sudo chpasswd
 						sudo passwd "$usr_login"
 						if [[ $? -ne 0 ]]; then
 							echo "User <$usr_login> Password Creation Has FAILED !"
@@ -311,10 +330,15 @@ selector_UserMan() {
 						echo "No USER entered, try again."
 						continue
 					fi
-					if ! echo "$usr_list" | grep -qw $usr2del ; then
-						echo "'$usr2del' NOT Found! try again."
+					# TODO: Make a function to check if a user name exist
+					if [[ $(isUserExist "$usr2del") -ne 0 ]]; then
+					    echo "'$usr2del' NOT Found! try again."
 						continue
 					fi
+					#if ! echo "$usr_list" | grep -qw $usr2del ; then
+					#	echo "'$usr2del' NOT Found! try again."
+					#	continue
+					#fi
 					read -p "Are you sure you want to DELETE '$usr2del'? (y/N)" confirm
 					if [[ "$confirm" =~ ^[Yy]$ ]]; then
 						sudo userdel -r "$usr2del"
@@ -370,7 +394,7 @@ while true ; do
 	read -p "Choose Option: " choice
 	echo
 	case "$choice" in
-		#Show System Health
+		# Show System Health
 		"1")	
 			selector_SysHealth
 			;;
