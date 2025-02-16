@@ -154,13 +154,14 @@ getUserList() {
 	cat /etc/passwd | grep "/home" | cut -s -d : -f1
 }
 
+# True = 0 | False = 1
 isUserExist() {
-    if ! echo "$1" | grep -qw getUserList ; then
-        # User Not Found ! (1 :: FALSE)
+    if id "$1" &>/dev/null ; then
+        # User Not Found / Not Exist
+        echo 0
+    else
         echo 1
     fi
-    # User Found (0 :: TRUE)
-    echo 0
 }
 
 printUserList() {
@@ -350,6 +351,7 @@ selector_UserMan() {
 						break
 					else
 						echo -e "User deletion has been CANCLED !\nNo Changes were made"
+						break
 					fi
 				done
 				;;
