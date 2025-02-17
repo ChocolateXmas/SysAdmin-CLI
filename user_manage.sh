@@ -116,7 +116,7 @@ validateUserData() {
 		return 1
 	fi
 	if ! isUserExist "$1" ; then
-	    printUserNotFound "$usr2del"
+	    printUserNotFound "$1"
 		return 1
 	fi
 	return 0
@@ -141,10 +141,6 @@ selector_UserMan() {
 				getUserDispName usr_name
 				local usr_login=""
 				getUserLoginName usr_login
-				# START Pass Manipulation
-				#local usr_pass=""
-				#getValidUserPass usr_pass
-				# END Pass Manipulation
 				changeChoice="Y"
 				while [[ "$changeChoice" =~ ^[Yy]$  ]]; do
 					echo "Just to make things sure :-)"
@@ -224,16 +220,23 @@ selector_UserMan() {
 				;;
 			# Modify User's Properties
 			"4")
+			    local title="MODS"
 				printUserList
 				while true; do
 				    echo "$cancelTitle"
                     read -p "Which User To Modify? > " usr2mod
                     if cancelRead "$usr2mod" ; then break; fi
-					if ! validateUserData "$usr2mod" ; then continue; fi
-					local title="MODS"
-					printf "~ %-s - %-20s\n" "$title" "$usr2mod"
-					printf "~%.0s\n" "$(( ${#title} + ${#usr2mod} ))"
-					printf "  ("
+                    if ! validateUserData "$usr2mod" ; then continue; fi
+					printCoolTitle "$title -> $usr2mod"
+					printf "\nChange:\n"
+					printf "  %-3s - %-25s\n" "(1)" "Display Name"
+					printf "  %-3s - %-25s\n" "(2)" "Login Name"
+					printf "  %-3s - %-25s\n" "(3)" "Password"
+					printf "  %-3s - %-25s\n" "(2)" "Permissions"
+					read -p "Select: " categoryChange
+					#printf "~ %-s - %-25s\n" "$title" "$usr2mod"
+					#printf "~ %-s %-s\n" "$(( ${#title} + ${#usr2mod} ))"
+					#printf "  ("
 				done
 				echo ""
 				;;
