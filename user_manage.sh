@@ -154,7 +154,7 @@ selector_UserMan() {
 					printf "       %-s\n" "Current: $usr_name"
 					printf "  %-3s - %-25s\n" "(2)" "User Login Name"
 					printf "       %-s\n" "Current: $usr_login"
-					read -p "Select: " categoryChange
+					local categoryChange; read -p "Select: " categoryChange
 					case "$categoryChange" in 
 						"1")
 							getUserDispName usr_name
@@ -228,15 +228,52 @@ selector_UserMan() {
                     if cancelRead "$usr2mod" ; then break; fi
                     if ! validateUserData "$usr2mod" ; then continue; fi
 					printCoolTitle "$title -> $usr2mod"
+					local dispName="$(getent passwd "$usr2mod" | cut -d: -f5 )"
+					dispName="${dispName:-No Display Name}"
+					local loginName="$(getent passwd "$usr2mod" | cut -d: -f1)"
 					printf "\nChange:\n"
 					printf "  %-3s - %-25s\n" "(1)" "Display Name"
+					printf "       %-s\n" "Current: $dispName"
 					printf "  %-3s - %-25s\n" "(2)" "Login Name"
+					printf "       %-s\n" "Current: $loginName"
 					printf "  %-3s - %-25s\n" "(3)" "Password"
-					printf "  %-3s - %-25s\n" "(2)" "Permissions"
-					read -p "Select: " categoryChange
-					#printf "~ %-s - %-25s\n" "$title" "$usr2mod"
-					#printf "~ %-s %-s\n" "$(( ${#title} + ${#usr2mod} ))"
-					#printf "  ("
+					printf "  %-3s - %-25s\n" "(4)" "Permissions"
+					printf "  %-3s - %-25s\n" "(5)" "HOME dir"
+					printf "  %-3s - %-10s\n" "(0)" "BACK"
+					while true; do
+					    local categoryChange; read -p "Select: " categoryChange
+					    case "$categoryChange" in
+					        # Display Name
+					        "1")
+					            local newDispName
+					            getUserDispName newDispName
+					            sudo usermod "$usr2mod" -c "$newDispName"
+					            ;;
+					        # Login Name
+					        "2")
+					            local newLoginName
+					            getUserLoginName newLoginName
+					            sudo usermod "$usr2mod" -l "$newLoginName"
+					            ;;
+					        # Password    
+				            "3")
+					            ;;
+					        # Permissions
+					        "4")
+					            ;;
+					        # HOME dir
+					        "5")
+					            
+					            ;;
+					        # BACK
+					        "0")
+					            break
+					            ;;
+					        *)
+					            printNotFound categoryChange
+					            ;;
+                        esac    
+					done
 				done
 				echo ""
 				;;
