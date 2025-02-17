@@ -45,3 +45,12 @@ isChoiceFoundFun() {
 		eval "$newChoice=0"
 	fi
 }
+
+cancelTitle="Type 0 To Get Back"
+# If user's input is 0, then cancel the "read" input and get back
+cancelRead() {
+    if [[ "$1" == "0" ]]; then
+        return 0
+    fi
+    return 1
+}

@@ -203,7 +203,9 @@ selector_UserMan() {
 			"3")
 				printUserList
 				while true; do
+				    echo "$cancelTitle"
 					read -p "Which User To Delete? > " usr2del
+					if cancelRead "$usr2del" ; then break; fi
 					if ! validateUserData "$usr2del" ; then continue; fi
 					read -p "Are you sure you want to DELETE '$usr2del'? (y/N)" confirm
 					if [[ "$confirm" =~ ^[Yy]$ ]]; then
@@ -222,15 +224,15 @@ selector_UserMan() {
 				;;
 			# Modify User's Properties
 			"4")
-				local usr_list=$(getUserList)
-				echo -e "List of Users:\n$usr_list\n"
+				printUserList
 				while true; do
-				    echo -n "Select User: "
-					read usr2mod
+				    echo "$cancelTitle"
+                    read -p "Which User To Modify? > " usr2mod
+                    if cancelRead "$usr2mod" ; then break; fi
 					if ! validateUserData "$usr2mod" ; then continue; fi
 					local title="MODS"
-					printf "~ %-s - %-20s" "$title" "$usr2mod"
-					printf "~%.0s" "$(( ${#title} + ${#usr2mod} ))"
+					printf "~ %-s - %-20s\n" "$title" "$usr2mod"
+					printf "~%.0s\n" "$(( ${#title} + ${#usr2mod} ))"
 					printf "  ("
 				done
 				echo ""
