@@ -18,7 +18,7 @@ enter2continue() {
 
 # check wether to print "Press ENTER to Continue ..." or Not, by checking given choice argument
 isEnter2Continue() {
-	if [[ $1 -eq 0 ]]; then
+	if [[ "$1" == "0" ]]; then
 		enter2continue
 		delCurrentLine
 	fi

@@ -128,17 +128,17 @@ readHomeDir() {
 			read -p "$(echo -e "WARNING, HOME Dir CAN Be Empty.\HOME Dir Empty? (y/N)")" emptyHomeChoice
 			emptyHomeChoice="${emptyHomeChoice-N}"
 			if [[ "$emptyHomeChoice" =~ ^[Yy]$ ]]; then
-			    homeDir="" #Empty User Display Name
+			    homeDir="" #Empty HOME Dir
 			    break
 			else
 			    read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
 			fi
 		elif [[ "$homeDir" =~ ^[a-zA-Z0-9][-a-zA-Z0-9._\'\ ]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}[a-zA-Z0-9]$ ]]; then
-		    # Display Name OK
+		    # HOME Dir OK
 		    break
 		else
-		    printUserRegExp "Display Name"
-		    read -p "$(echo -e "Enter User's Display Name: ")" homeDir
+		    printUserRegExp "HOME Dir"
+		    read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
 		fi
 	done
 	local -n newHome="$1"

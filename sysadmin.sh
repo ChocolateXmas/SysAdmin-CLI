@@ -10,7 +10,7 @@ source "$(dirname "$0")/utils.sh"
 source "$(dirname "$0")/sys_manage.sh"
 source "$(dirname "$0")/user_manage.sh"
 
-TOOL_VERSION="1.0"
+TOOL_VERSION="1.2"
 
 titleMain="SysAdmin V$TOOL_VERSION"
 

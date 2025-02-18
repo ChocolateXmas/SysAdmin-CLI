@@ -16,12 +16,21 @@ A simple and powerful Bash script for managing users on a Linux system. This scr
 
 Clone the repository, navigate to the directory, and execute the script:
 
+1. Clone the repository:
 ```bash
 git clone https://github.com/ChocolateXmas/SysAdmin-CLI.git
+```
+2. Navigate to the cloned directory:
+```bash
 cd SysAdmin-CLI
-./user_manage.sh
+```
 
+3. Run:
+```bash
+./user_manage.sh
+```
 Follow the on-screen prompts to manage users.
+
 
 Dependencies
 
