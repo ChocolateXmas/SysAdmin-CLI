@@ -40,7 +40,7 @@ printUserExist() { echo "ERROR: User <$1> Already Exists !"; } # $1 => User <Nam
 printUserEmpty() { echo -e "ERROR: User's $1 Can't Be Empty!\n"; } # $1 => "Display / Login" 
 printUserRegExp() { echo -e "ERROR: $1 RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
 
-getUserDispName() {
+readUserDispName() {
 	read -p "Enter User's Display Name: " usr_name
 	while true; do
 		if [[ -z "$usr_name" ]]; then
@@ -65,7 +65,7 @@ getUserDispName() {
 	dispName="$usr_name"
 }
 
-getUserLoginName() {
+readUserLoginName() {
 	read -p "Enter User's Login Name: " usr_login
 	while true; do
 		if id "$usr_login" &>/dev/null; then
@@ -87,7 +87,7 @@ getUserLoginName() {
 }
 
 # NOT USED - DEPRECATED (Future usage may be)
-getValidUserPass() {
+readValidUserPass() {
 	local validPass="$1"
 	while true; do
 		echo -n "Enter User's Password: "
@@ -161,9 +161,9 @@ selector_UserMan() {
 			# Add New User
 			"2")
 				local usr_name=""
-				getUserDispName usr_name
+				readUserDispName usr_name
 				local usr_login=""
-				getUserLoginName usr_login
+				readUserLoginName usr_login
 				changeChoice="Y"
 				while [[ "$changeChoice" =~ ^[Yy]$  ]]; do
 					echo "Just to make things sure :-)"
@@ -180,10 +180,10 @@ selector_UserMan() {
 					local categoryChange; read -p "Select: " categoryChange
 					case "$categoryChange" in 
 						"1")
-							getUserDispName usr_name
+							readUserDispName usr_name
 							;;
 						"2")
-							getUserLoginName usr_login
+							readUserLoginName usr_login
 							;;
 						*)
 							printNotFound categoryChange
@@ -273,7 +273,7 @@ selector_UserMan() {
 					        # Display Name
 					        "1")
 					            local newDispName=""
-					            getUserDispName newDispName
+					            readUserDispName newDispName
 					            sudo usermod "$usr2mod" -c "$newDispName"
 								if [[ $? -ne 0 ]]; then
 									echo "ERROR: User Display Name Change FAILED"
@@ -286,7 +286,7 @@ selector_UserMan() {
 					        # Login Name
 					        "2")
 					            local newLoginName=""
-					            getUserLoginName newLoginName
+					            readUserLoginName newLoginName
 					            sudo usermod "$usr2mod" -l "$newLoginName"
 								if [[ $? -ne 0 ]]; then
 									echo "ERROR: User Login Name Change FAILED"
