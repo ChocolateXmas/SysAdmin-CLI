@@ -37,6 +37,7 @@ printUserList() {
 
 printUserNotFound() { echo "ERROR: User <$1> NOT FOUND !"; } # $1 => User Display/Login Name
 printUserExist() { echo "ERROR: User <$1> Already Exists !"; } # $1 => User <Name>
+printHomeExist() { echo "ERROR: Directory <$1> Already Exist!" } # $1 => Given HOME Dir  
 printUserEmpty() { echo -e "ERROR: User's $1 Can't Be Empty!\n"; } # $1 => "Display / Login" 
 printUserRegExp() { echo -e "ERROR: $1 RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
 
@@ -121,8 +122,8 @@ validateUserData() {
 }
 
 readUserHomeDir() {
-	read -p "Enter User's Home Directory: " homeDir
 	while true; do
+		read -p "Enter User's Home Directory: " homeDir
 		if [[ -z "$homeDir" ]]; then
 			printUserEmpty "HOME Dir"
 			read -p "$(echo -e "WARNING, HOME Dir CAN Be Empty, BUT The User Would NOT Have Any HOME Folder!\nKeep HOME Dir Empty? (y/N)")" emptyHomeChoice
@@ -133,6 +134,14 @@ readUserHomeDir() {
 			else
 			    read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
 			fi
+		elif [[ -d "$homeDir" ]]; then
+			printHomeExist "$homeDir"
+			read -p "Continue? (Y/n) " existingDirChoice
+			if [[ "$existingDirChoice" =~ ^[Yy]$ ]]; then
+				# Use Exisiting HOME Dir
+				break
+			fi
+			continue
 		elif [[ "$homeDir" =~ ^/(?:[A-Za-z0-9._-]+/?)+$ ]]; then
 		    # HOME Dir OK
 		    break
