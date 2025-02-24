@@ -132,7 +132,8 @@ readUserHomeDir() {
 			    homeDir="" #Empty HOME Dir
 			    break
 			else
-			    read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
+			    #read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
+				continue
 			fi
 		elif [[ -d "$homeDir" ]]; then
 			printHomeExist "$homeDir"
@@ -322,10 +323,15 @@ selector_UserMan() {
 					            ;;
 					        # HOME dir
 					        "5")
-								local oldHomeDir="$()"
 					            local newHomeDir=""
 								readUserHomeDir newHomeDir
-					            ;;
+								if [[ "$newHomeDir" == "$homeDir"]]; then
+									echo "No Changes Were Made To HOME Dir !"
+									break
+								elif [[ -z newHomeDir ]]; then
+									echo "New HOME Dir Will Be NON-Existing"
+								fi
+								;;
 					        # BACK
 					        "0")
 					            break
