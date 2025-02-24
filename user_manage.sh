@@ -120,12 +120,12 @@ validateUserData() {
 	return 0
 }
 
-readHomeDir() {
+readUserHomeDir() {
 	read -p "Enter User's Home Directory: " homeDir
 	while true; do
 		if [[ -z "$homeDir" ]]; then
 			printUserEmpty "HOME Dir"
-			read -p "$(echo -e "WARNING, HOME Dir CAN Be Empty.\HOME Dir Empty? (y/N)")" emptyHomeChoice
+			read -p "$(echo -e "WARNING, HOME Dir CAN Be Empty, BUT The User Would NOT Have Any HOME Folder!\nKeep HOME Dir Empty? (y/N)")" emptyHomeChoice
 			emptyHomeChoice="${emptyHomeChoice-N}"
 			if [[ "$emptyHomeChoice" =~ ^[Yy]$ ]]; then
 			    homeDir="" #Empty HOME Dir
@@ -133,7 +133,7 @@ readHomeDir() {
 			else
 			    read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
 			fi
-		elif [[ "$homeDir" =~ ^[a-zA-Z0-9][-a-zA-Z0-9._\'\ ]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}[a-zA-Z0-9]$ ]]; then
+		elif [[ "$homeDir" =~ ^/(?:[A-Za-z0-9._-]+/?)+$ ]]; then
 		    # HOME Dir OK
 		    break
 		else
@@ -314,7 +314,7 @@ selector_UserMan() {
 					        # HOME dir
 					        "5")
 					            local newHomeDir=""
-								read -p
+								read -p ""
 					            ;;
 					        # BACK
 					        "0")
