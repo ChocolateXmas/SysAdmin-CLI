@@ -42,8 +42,8 @@ printUserEmpty() { echo -e "ERROR: User's $1 Can't Be Empty!\n"; } # $1 => "Disp
 printUserRegExp() { echo -e "ERROR: $1 RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
 
 readUserDispName() {
-	read -p "Enter User's Display Name: " usr_name
 	while true; do
+		read -p "Enter User's Display Name: " usr_name
 		if [[ -z "$usr_name" ]]; then
 			printUserEmpty "Display Name"
 			read -p "$(echo -e "WARNING, Display Name CAN Be Empty.\nKeep Display Name Empty? (y/N)")" emptyDispChoice
@@ -67,8 +67,8 @@ readUserDispName() {
 }
 
 readUserLoginName() {
-	read -p "Enter User's Login Name: " usr_login
 	while true; do
+		read -p "Enter User's Login Name: " usr_login
 		if id "$usr_login" &>/dev/null; then
 		    printUserExist "$usr_login"
 			read -p "$(echo -e "Enter User's Login Name: ")" usr_login
