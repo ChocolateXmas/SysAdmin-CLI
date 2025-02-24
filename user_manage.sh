@@ -37,7 +37,7 @@ printUserList() {
 
 printUserNotFound() { echo "ERROR: User <$1> NOT FOUND !"; } # $1 => User Display/Login Name
 printUserExist() { echo "ERROR: User <$1> Already Exists !"; } # $1 => User <Name>
-printHomeExist() { echo "ERROR: Directory <$1> Already Exist!" } # $1 => Given HOME Dir  
+printHomeExist() { echo "ERROR: Directory <$1> Already Exist!"; } # $1 => Given HOME Dir  
 printUserEmpty() { echo -e "ERROR: User's $1 Can't Be Empty!\n"; } # $1 => "Display / Login" 
 printUserRegExp() { echo -e "ERROR: $1 RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
 
@@ -322,8 +322,9 @@ selector_UserMan() {
 					            ;;
 					        # HOME dir
 					        "5")
+								local oldHomeDir="$()"
 					            local newHomeDir=""
-								read -p ""
+								readUserHomeDir newHomeDir
 					            ;;
 					        # BACK
 					        "0")
