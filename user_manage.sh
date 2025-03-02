@@ -121,9 +121,28 @@ validateUserData() {
 	return 0
 }
 
+# Given Args:
+# $1 = Home Directory
+# $2 = wanted User Name to change its new HOME Dir 
+setPermissionHome() {
+	sudo chown -R "$2":"$2" "$1" # Recursive - apply ownership for all subdirectories in path
+	if [[ $? -ne 0 ]]; then
+		echo "ERROR: FAILED to set Ownership for $1"
+	fi
+	sudo chmod 700 "$1"
+	if [[ $? -ne 0 ]]; then
+		echo "ERROR: FAILED to set permission for $1"
+	fi
+}
+
+# Given Args:
+# $1 = Home Directory outerscope parameter pointer
+# $2 = wanted User Name to change its new HOME Dir 
 readUserHomeDir() {
+	local inputMsg="Enter User's Home Directory: "
+	local usr="$2"
 	while true; do
-		read -p "Enter User's Home Directory: " homeDir
+		read -p "$inputMsg" homeDir
 		if [[ -z "$homeDir" ]]; then
 			printUserEmpty "HOME Dir"
 			read -p "$(echo -e "WARNING, HOME Dir CAN Be Empty, BUT The User Would NOT Have Any HOME Folder!\nKeep HOME Dir Empty? (y/N)")" emptyHomeChoice
@@ -132,23 +151,32 @@ readUserHomeDir() {
 			    homeDir="" #Empty HOME Dir
 			    break
 			else
-			    #read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
 				continue
 			fi
 		elif [[ -d "$homeDir" ]]; then
 			printHomeExist "$homeDir"
 			read -p "Continue? (Y/n) " existingDirChoice
+			existingDirChoice="${existingDirChoice-Y}
 			if [[ "$existingDirChoice" =~ ^[Yy]$ ]]; then
-				# Use Exisiting HOME Dir
-				break
+				setPermissionHome "$homeDir" "$usr" # Ensure permission for existing folder
+				break # Use Exisiting HOME Dir
 			fi
 			continue
-		elif [[ "$homeDir" =~ ^/(?:[A-Za-z0-9._-]+/?)+$ ]]; then
+		elif [[ "$homeDir" =~ ^/[A-Za-z0-9._-]+(/?[A-Za-z0-9._-]+)*/? ]]; then
 		    # HOME Dir OK
+			if ! id "$usr" &>/dev/null; then
+				echo "ERROR: User $usr does NOT exist. Can't change HOME Dir"
+				exit 1
+			fi
+			sudo mkdir -p "$homeDir"
+			if [[ $? -ne 0 ]]; then
+				echo "ERROR: FAILED to create $homeDir !"
+			fi
+			setPermissionHome "$homeDir" "$usr"
 		    break
 		else
 		    printUserRegExp "HOME Dir"
-		    read -p "$(echo -e "Enter User's HOME Dir: ")" homeDir
+		    read -p "$(echo -e "$inputMsg")" homeDir
 		fi
 	done
 	local -n newHome="$1"
@@ -331,6 +359,7 @@ selector_UserMan() {
 								elif [[ -z newHomeDir ]]; then
 									echo "New HOME Dir Will Be NON-Existing"
 								fi
+
 								;;
 					        # BACK
 					        "0")
