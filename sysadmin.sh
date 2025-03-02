@@ -51,7 +51,7 @@ while true ; do
 			;;
 		# User Management
 		"2")
-			selector_UserMan
+			UserManageMenu
 			;;
 		# Backup
 		"3")

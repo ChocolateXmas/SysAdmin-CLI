@@ -182,7 +182,7 @@ readUserHomeDir() {
 	newHome="$homeDir"
 }
 
-selector_UserMan() {
+UserManageMenu() {
 	local choice=""
 	local isChoiceFound=0
 	while true ; do
