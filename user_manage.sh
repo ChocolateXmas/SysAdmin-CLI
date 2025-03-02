@@ -351,7 +351,7 @@ selector_UserMan() {
 					        # HOME dir
 					        "5")
 					            local newHomeDir=""
-								readUserHomeDir newHomeDir
+								readUserHomeDir newHomeDir usr2mod 
 								if [[ "$newHomeDir" == "$homeDir" ]]; then
 									echo "No Changes Were Made To HOME Dir !"
 									break
