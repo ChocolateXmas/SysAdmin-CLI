@@ -124,14 +124,17 @@ validateUserData() {
 # $1 = Home Directory
 # $2 = wanted User Name to change its new HOME Dir 
 setPermissionHome() {
-	sudo chown -R "$2":"$2" "$1" # Recursive - apply ownership for all subdirectories in path
-	if [[ $? -ne 0 ]]; then
-		echo "ERROR: FAILED to set Ownership for $1"
+	local homeDir="$1"
+	local usr="$2"
+	local group="$2"
+	# Check if group exists before setiing permissions
+	if ! getent group "$group" &>/dev/null ; then
+		echo "Group <$group> does NOT exist.\nCreating now..."
+		sudo groupadd "$group"
 	fi
-	sudo chmod 700 "$1"
-	if [[ $? -ne 0 ]]; then
-		echo "ERROR: FAILED to set permission for $1"
-	fi
+	# Recursive - apply ownership for all subdirectories in path
+	sudo chown -R "$usr":"$usr" "$homeDir" || { echo "ERROR: FAILED to set Ownership for $homeDir"; exit 1; }
+	sudo chmod 700 "$homeDir" || { echo "ERROR: FAILED to set permission for $homeDir"; exit 2; }
 }
 
 # Given Args:
@@ -322,6 +325,7 @@ selector_UserMan() {
 					            ;;
 					        # Login Name
 					        "2")
+								# TODO: check more users on this group given use2mod's group, change the group (if exist) of the current user accordingly without breaking the other users group. Make a new group for the new login name if needed. 
 					            local newLoginName=""
 					            readUserLoginName newLoginName
 					            sudo usermod "$usr2mod" -l "$newLoginName"
@@ -330,7 +334,7 @@ selector_UserMan() {
 									break
 								fi
 								echo "Success!"
-								usr2mod="$newLoginName"
+								usr2mod="$newLoginName" # For script change to be visible on the next menu run
 								enter2continue
 								continue
 					            ;;
@@ -358,7 +362,7 @@ selector_UserMan() {
 								elif [[ -z newHomeDir ]]; then
 									echo "New HOME Dir Will Be NON-Existing"
 								fi
-
+							
 								;;
 					        # BACK
 					        "0")
