@@ -12,6 +12,10 @@ A simple and powerful Bash script for managing users on a Linux system. This scr
 - **Modify User**: Update user properties (e.g., login name, display name, password, permissions).
 - **Service Management**: Control associated services for users.
 
+## REQUIREMENTS
+
+
+
 ## Usage
 
 Clone the repository, navigate to the directory, and execute the script:
@@ -31,11 +35,12 @@ cd SysAdmin-CLI
 ```
 Follow the on-screen prompts to manage users.
 
-
-Dependencies
-
-    Bash shell
-    Linux-based system
+> [!info] # Dependencies
+> | Required          | Version    |
+| ---------------- | ------ |
+| Bash Shell           | 4.3+   |
+| Linux/Unix             | *   |
+> 
 
 License
 
