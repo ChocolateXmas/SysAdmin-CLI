@@ -38,7 +38,7 @@ Follow the on-screen prompts to manage users.
 # :information_source: Dependencies
 
 | Required | Version |
-| :---: | :---: | :---: |
+| :---: | :---: |
 | Bash Shell | 4.3+ |
 | Linux/Unix | * |
 
