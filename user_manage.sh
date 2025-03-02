@@ -164,7 +164,7 @@ readUserHomeDir() {
 		elif [[ "$homeDir" =~ ^/[A-Za-z0-9._-]+(/?[A-Za-z0-9._-]+)*/? ]]; then
 		    # HOME Dir OK
 			if ! id "$usr" &>/dev/null; then
-				echo "ERROR: User $usr does NOT exist. Can't change HOME Dir"
+				echo "ERROR: User <$usr> does NOT exist. Can't change HOME Dir"
 				break
 			fi
 			sudo mkdir -p "$homeDir"
