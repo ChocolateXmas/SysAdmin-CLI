@@ -154,7 +154,7 @@ readUserHomeDir() {
 			fi
 		elif [[ -d "$homeDir" ]]; then
 			printHomeExist "$homeDir"
-			read -p "Continue? (Y/n) " existingDirChoice
+			read -p "Use this path and Continue? (Y/n) " existingDirChoice
 			existingDirChoice="${existingDirChoice-Y}"
 			if [[ "$existingDirChoice" =~ ^[Yy]$ ]]; then
 				setPermissionHome "$homeDir" "$usr" # Ensure permission for existing folder
@@ -352,7 +352,7 @@ selector_UserMan() {
 					        "5")
 					            local newHomeDir=""
 								readUserHomeDir newHomeDir
-								if [[ "$newHomeDir" == "$homeDir"]]; then
+								if [[ "$newHomeDir" == "$homeDir" ]]; then
 									echo "No Changes Were Made To HOME Dir !"
 									break
 								elif [[ -z newHomeDir ]]; then
