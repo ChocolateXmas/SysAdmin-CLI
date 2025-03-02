@@ -35,12 +35,12 @@ cd SysAdmin-CLI
 ```
 Follow the on-screen prompts to manage users.
 
-> [!info] # Dependencies
-> | Required          | Version    |
-| ---------------- | ------ |
-| Bash Shell           | 4.3+   |
-| Linux/Unix             | *   |
-> 
+# :information_source: Dependencies
+| Required | Version |
+| :---: | :---: | :---: |
+| ---------- | --- |
+| Bash Shell | 4.3+ |
+| Linux/Unix | * | 
 
 License
 
