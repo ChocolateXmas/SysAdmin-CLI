@@ -28,7 +28,6 @@ git clone https://github.com/ChocolateXmas/SysAdmin-CLI.git
 ```bash
 cd SysAdmin-CLI
 ```
-
 3. Run:
 ```bash
 ./user_manage.sh
