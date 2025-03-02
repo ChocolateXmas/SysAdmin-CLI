@@ -155,7 +155,7 @@ readUserHomeDir() {
 		elif [[ -d "$homeDir" ]]; then
 			printHomeExist "$homeDir"
 			read -p "Continue? (Y/n) " existingDirChoice
-			existingDirChoice="${existingDirChoice-Y}
+			existingDirChoice="${existingDirChoice-Y}"
 			if [[ "$existingDirChoice" =~ ^[Yy]$ ]]; then
 				setPermissionHome "$homeDir" "$usr" # Ensure permission for existing folder
 				break # Use Exisiting HOME Dir
