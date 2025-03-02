@@ -7,7 +7,6 @@ print_UserMan() {
 	printf "%-s" "Select: "
 	printf "  %-3s - %-s\n" "(1)" "List All Users"
 	printf "  %-3s - %-s\n" "(2)" "Add New User"
-	printf "  %-3s - %-s\n" "(2)" "Add New User"
 	printf "  %-3s - %-s\n" "(3)" "Delete User"
 	printf "  %-3s - %-s\n" "(4)" "Modify User's Properties (Login/Display Name, Password, Permissions, etc..)"
 	printf "  %-3s - %-s\n" "(5)" "Service Management"
@@ -166,7 +165,7 @@ readUserHomeDir() {
 		    # HOME Dir OK
 			if ! id "$usr" &>/dev/null; then
 				echo "ERROR: User $usr does NOT exist. Can't change HOME Dir"
-				exit 1
+				break
 			fi
 			sudo mkdir -p "$homeDir"
 			if [[ $? -ne 0 ]]; then
