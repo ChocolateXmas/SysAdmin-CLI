@@ -141,19 +141,18 @@ setPermissionHome() {
 # $1 = Home Directory outerscope parameter pointer
 # $2 = wanted User Name to change its new HOME Dir 
 readUserHomeDir() {
-	local inputMsg="Enter User's Home Directory: "
+	local inputMsg="Enter User's NEW Home Directory: "
 	local usr="$2"
+	local homeDir=""
 	while true; do
 		read -p "$inputMsg" homeDir
 		if [[ -z "$homeDir" ]]; then
-			printUserEmpty "HOME Dir"
+			# printUserEmpty "HOME Dir"
 			read -p "$(echo -e "WARNING, HOME Dir CAN Be Empty, BUT The User Would NOT Have Any HOME Folder!\nKeep HOME Dir Empty? (y/N)")" emptyHomeChoice
 			emptyHomeChoice="${emptyHomeChoice-N}"
 			if [[ "$emptyHomeChoice" =~ ^[Yy]$ ]]; then
 			    homeDir="" #Empty HOME Dir
 			    break
-			else
-				continue
 			fi
 		elif [[ -d "$homeDir" ]]; then
 			printHomeExist "$homeDir"
@@ -163,7 +162,6 @@ readUserHomeDir() {
 				setPermissionHome "$homeDir" "$usr" # Ensure permission for existing folder
 				break # Use Exisiting HOME Dir
 			fi
-			continue
 		elif [[ "$homeDir" =~ ^/[A-Za-z0-9._-]+(/?[A-Za-z0-9._-]+)*/? ]]; then
 		    # HOME Dir OK
 			if ! id "$usr" &>/dev/null; then
@@ -178,7 +176,6 @@ readUserHomeDir() {
 		    break
 		else
 		    printUserRegExp "HOME Dir"
-		    read -p "$(echo -e "$inputMsg")" homeDir
 		fi
 	done
 	local -n newHome="$1"
@@ -356,6 +353,8 @@ selector_UserMan() {
 					        "5")
 					            local newHomeDir=""
 								readUserHomeDir newHomeDir "$usr2mod" 
+								echo "Old Dir: $homeDir"
+								echo "New Dir: $newHomeDir"
 								if [[ "$newHomeDir" == "$homeDir" ]]; then
 									echo "No Changes Were Made To HOME Dir !"
 									break
