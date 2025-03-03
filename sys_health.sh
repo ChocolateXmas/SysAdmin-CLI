@@ -16,7 +16,7 @@ Select:
 	echo -e "$msg"
 }
 
-selector_SysHealth() {
+SysHealthMenu() {
 	local choice=""
 	local isCoiceFound=0
 	while true ; do

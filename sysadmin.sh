@@ -47,7 +47,7 @@ while true ; do
 	case "$choice" in
 		# Show System Health
 		"1")	
-			selector_SysHealth
+			SysHealthMenu
 			;;
 		# User Management
 		"2")
