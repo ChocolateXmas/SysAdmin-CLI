@@ -8,7 +8,7 @@ getUserList() {
 # True = 0 | False = 1
 isUserExist() {
     if /usr/bin/id "$1" &>/dev/null ; then
-        # User Not Found / Not Exist
+        # User Found / Exist
         return 0
     else
         return 1
