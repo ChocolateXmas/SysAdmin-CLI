@@ -24,7 +24,7 @@ titleServiceMan="$titleMain - Service Management"
 nullChoice="\n *** Not found, Try Again ***"
 
 print_MainMenu() {
-	# clear
+	clear
 	printCoolTitle "$title"
 	local msg="
 Select:
