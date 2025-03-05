@@ -30,6 +30,7 @@ UserManageMenu() {
 			# List All Users
 			"1")
 				printUserList
+				echo
 				;;
 			# Add New User
 			"2")
