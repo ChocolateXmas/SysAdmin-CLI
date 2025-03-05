@@ -18,33 +18,6 @@ print_UserMenu() {
 	printf "  %-3s - %-10s\n" "(0)" "BACK"
 }
 
-# User Management Functions
-getUserList() {
-	cat /etc/passwd | grep "/home" | cut -s -d : -f1
-}
-
-# True = 0 | False = 1
-isUserExist() {
-    if id "$1" &>/dev/null ; then
-        # User Not Found / Not Exist
-        return 0
-    else
-        return 1
-    fi
-}
-
-printUserList() {
-    local usr_list="$(getUserList)"
-    echo "List of Users:"
-    printf ">> %s\n" $(echo -e "$usr_list") 
-}
-
-printUserNotFound() { echo "ERROR: User <$1> NOT FOUND !"; } # $1 => User Display/Login Name
-printUserExist() { echo "ERROR: User <$1> Already Exists !"; } # $1 => User <Name>
-printHomeExist() { echo "ERROR: Directory <$1> Already Exist!"; } # $1 => Given HOME Dir  
-printUserEmpty() { echo -e "ERROR: User's $1 Can't Be Empty!\n"; } # $1 => "Display / Login" 
-printUserRegExp() { echo -e "ERROR: $1 RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
-
 readUserDispName() {
 	while true; do
 		read -p "Enter User's Display Name: " usr_name
