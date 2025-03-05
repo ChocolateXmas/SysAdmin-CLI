@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source "$(dirname "$0")/utils.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../../config/config.sh"
+source "$PROJECT_ROOT/scripts/utils/utils.sh"
 
 print_SysHealth() {
 	printCoolTitle "$titleSysHealth"

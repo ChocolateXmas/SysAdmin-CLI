@@ -6,9 +6,10 @@ if [ "$(id -u)" -ne 0 ] ; then
 	exit 1
 fi
 
-source "$(dirname "$0")/utils.sh"
-source "$(dirname "$0")/sysHealth/sys_manage.sh"
-source "$(dirname "$0")/userManage/user_manage.sh"
+source "$(dirname $"0")/config/config.sh"
+source "$PROJECT_ROOT/scripts/utils/utils.sh"
+source "$PROJECT_ROOT/scripts/sysHealth/sys_health.sh"
+source "$PROJECT_ROOT/scripts/userManage/user_manage.sh"
 
 TOOL_VERSION="1.2"
 
@@ -24,7 +25,7 @@ titleServiceMan="$titleMain - Service Management"
 nullChoice="\n *** Not found, Try Again ***"
 
 print_MainMenu() {
-	clear
+	# clear
 	printCoolTitle "$title"
 	local msg="
 Select:

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-source "$(dirname "0")/user_utils.sh"
-
+source "$(dirname "${BASH_SOURCE[0]}")/../../../../config/config.sh"
+source "$PROJECT_ROOT/scripts/userManage/user_utils.sh"

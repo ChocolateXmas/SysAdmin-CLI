@@ -1,10 +1,11 @@
 #!/bin/bash
 
-source "$(dirname "$0")/utils.sh"
-source "$(dirname "0")/user_utils.sh"
-source "$(dirname "0")/userActions/create/user_create.sh"
-source "$(dirname "0")/userActions/delete/user_del.sh"
-source "$(dirname "0")/userActions/modify/user_mod.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../../config/config.sh"
+source "$PROJECT_ROOT/scripts/utils/utils.sh"
+source "$PROJECT_ROOT/scripts/userManage/user_utils.sh"
+source "$PROJECT_ROOT/scripts/userManage/userActions/create/user_create.sh"
+source "$PROJECT_ROOT/scripts/userManage/userActions/delete/user_del.sh"
+source "$PROJECT_ROOT/scripts/userManage/userActions/modify/user_mod.sh"
 
 print_UserMenu() {
 	printCoolTitle "$titleUserMan"
