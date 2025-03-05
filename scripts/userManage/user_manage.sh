@@ -9,7 +9,7 @@ source "$PROJECT_ROOT/scripts/userManage/userActions/modify/user_mod.sh"
 
 print_UserMenu() {
 	printCoolTitle "$titleUserMan"
-	printf "%-s" "Select: "
+	printf "%-s\n" "Select:"
 	printf "  %-3s - %-s\n" "(1)" "List All Users"
 	printf "  %-3s - %-s\n" "(2)" "Add New User"
 	printf "  %-3s - %-s\n" "(3)" "Delete User"
