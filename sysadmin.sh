@@ -7,7 +7,6 @@ if [ "$(id -u)" -ne 0 ] ; then
 fi
 
 source "$(dirname $"0")/config/config.sh"
-source "$PROJECT_ROOT/scripts/utils/utils.sh"
 source "$PROJECT_ROOT/scripts/sysHealth/sys_health.sh"
 source "$PROJECT_ROOT/scripts/userManage/user_manage.sh"
 
