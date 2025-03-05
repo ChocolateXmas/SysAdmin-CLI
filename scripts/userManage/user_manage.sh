@@ -1,8 +1,12 @@
 #!/bin/bash
 
 source "$(dirname "$0")/utils.sh"
+source "$(dirname "0")/user_utils.sh"
+source "$(dirname "0")/userActions/create/user_create.sh"
+source "$(dirname "0")/userActions/delete/user_del.sh"
+source "$(dirname "0")/userActions/modify/user_mod.sh"
 
-print_UserMan() {
+print_UserMenu() {
 	printCoolTitle "$titleUserMan"
 	printf "%-s" "Select: "
 	printf "  %-3s - %-s\n" "(1)" "List All Users"
@@ -186,7 +190,7 @@ UserManageMenu() {
 	local choice=""
 	local isChoiceFound=0
 	while true ; do
-		isChoiceFoundFun isChoiceFound print_UserMan
+		isChoiceFoundFun isChoiceFound print_UserMenu
 		echo
 		read -p "Choose Option: " choice
 		echo

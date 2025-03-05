@@ -7,8 +7,8 @@ if [ "$(id -u)" -ne 0 ] ; then
 fi
 
 source "$(dirname "$0")/utils.sh"
-source "$(dirname "$0")/sys_manage.sh"
-source "$(dirname "$0")/user_manage.sh"
+source "$(dirname "$0")/sysHealth/sys_manage.sh"
+source "$(dirname "$0")/userManage/user_manage.sh"
 
 TOOL_VERSION="1.2"
 
