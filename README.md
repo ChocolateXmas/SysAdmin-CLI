@@ -1,6 +1,7 @@
-# SysAdmin CLI: User Management Script
-
-![SysAdmin CLI Banner](https://img.shields.io/badge/SysAdmin%20CLI-User%20Management-blue)
+<div align="center">
+    # SysAdmin CLI: User Management Script
+    ![SysAdmin CLI Banner](https://img.shields.io/badge/SysAdmin%20CLI-User%20Management-blue)
+</div>
 
 A simple and powerful Bash script for managing users on a Linux system. This script allows administrators to easily list, add, delete, and modify users, as well as manage related services.
 
@@ -17,9 +18,10 @@ A simple and powerful Bash script for managing users on a Linux system. This scr
 
 
 ## Usage
+> [!NOTE]
+> SU Permissions are needed to run this script!
 
 Clone the repository, navigate to the directory, and execute the script:
-
 1. Clone the repository:
 ```bash
 git clone https://github.com/ChocolateXmas/SysAdmin-CLI.git
@@ -28,8 +30,6 @@ git clone https://github.com/ChocolateXmas/SysAdmin-CLI.git
 ```bash
 cd SysAdmin-CLI
 ```
-> [!NOTE]
-> SU Permissions are needed to run this script!
 3. Run:
 ```bash
 sudo ./sysadmin.sh
