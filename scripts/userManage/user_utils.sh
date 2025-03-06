@@ -7,7 +7,7 @@ getUserList() {
 
 # True = 0 | False = 1
 isUserExist() {
-    if /usr/bin/id "$1" &>/dev/null ; then
+    if /usr/bin/id "$1" &>/dev/null && ; then
         # User Found / Exist
         return 0
     else
@@ -27,6 +27,31 @@ printHomeExist() { echo "ERROR: Directory <$1> Already Exist!"; } # $1 => Given 
 printUserEmpty() { echo -e "ERROR: User's $1 Can't Be Empty!\n"; } # $1 => "Display / Login" 
 printUserRegExp() { echo -e "ERROR: $1 RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
 
+regexp_start="^[a-z]"
+regexp_middle="[-a-z0-9._\']{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}"
+regexp_end="[a-z0-9]$"
+regexp_full="${regexp_start}${regexp_middle}${regexp_end}"
+
+isLoginNameValid() {
+    if [[ -z "$1" ]] ; then 
+        return 1
+    elif [[ ${#1} -eq 1  ]] ; then
+        # Validate a single character login name
+        if [[ "$1" =~ $regexp_start ]] ; then
+            return 0
+        else
+            return 1
+        fi
+    else   
+        # Validated multi character login name
+        if [[ "$1" =~ $regexp_full ]] ; then
+            return 0
+        else
+            return 1
+        fi 
+    fi
+}
+
 readUserDispName() {
 	while true; do
 		read -p "Enter User's Display Name: " usr_name
@@ -40,7 +65,7 @@ readUserDispName() {
 			else
 			    read -p "$(echo -e "Enter User's Display Name: ")" usr_name
 			fi
-		elif [[ "$usr_name" =~ ^[a-zA-Z0-9][-a-zA-Z0-9._\'\ ]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}[a-zA-Z0-9]$ ]]; then
+		elif [[  ]]; then
 		    # Display Name OK
 		    break
 		else
