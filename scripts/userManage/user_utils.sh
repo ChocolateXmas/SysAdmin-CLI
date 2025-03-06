@@ -27,15 +27,13 @@ printHomeExist() { echo "ERROR: Directory <$1> Already Exist!"; } # $1 => Given 
 printUserEmpty() { echo -e "ERROR: User's $1 Can't Be Empty!\n"; } # $1 => "Display / Login" 
 printUserRegExp() { echo -e "ERROR: $1 RegExp Format Not Allowed\n"; } # $1 => "Display / Login"
 
-regexp_start="^[a-z]"
-regexp_middle="[-a-z0-9._\']{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}"
-regexp_end="[a-z0-9]$"
-regexp_full="${regexp_start}${regexp_middle}${regexp_end}"
+displayRegExp_start="^[a-zA-Z0-9]"
+displayRegExp_middle="[-a-zA-Z0-9._\'\ ]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}"
+displayRegExp_end="[a-zA-Z0-9]$"
+displayRegExp_full="${displayRegExp_start}${displayRegExp_middle}${displayRegExp_end}"
 
-isLoginNameValid() {
-    if [[ -z "$1" ]] ; then 
-        return 1
-    elif [[ ${#1} -eq 1  ]] ; then
+isDisplayNameValid() {
+    if [[ ${#1} -eq 1  ]] ; then
         # Validate a single character login name
         if [[ "$1" =~ $regexp_start ]] ; then
             return 0
@@ -53,6 +51,7 @@ isLoginNameValid() {
 }
 
 readUserDispName() {
+    local usr_name=""
 	while true; do
 		read -p "Enter User's Display Name: " usr_name
 		if [[ -z "$usr_name" ]]; then
@@ -65,16 +64,41 @@ readUserDispName() {
 			else
 			    read -p "$(echo -e "Enter User's Display Name: ")" usr_name
 			fi
-		elif [[  ]]; then
+		elif [[ isDisplayNameValid "$usr_name" ]]; then
 		    # Display Name OK
 		    break
 		else
 		    printUserRegExp "Display Name"
-		    read -p "$(echo -e "Enter User's Display Name: ")" usr_name
+		    continue
 		fi
 	done
 	local -n dispName="$1"
 	dispName="$usr_name"
+}
+
+loginRegExp_start="^[a-z]"
+loginRegExp_middle="[-a-z0-9._\']{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}"
+loginRegExp_end="[a-z0-9]$"
+loginRegExp_full="${loginRegExp_start}${loginRegExp_middle}${loginRegExp_end}"
+
+isLoginNameValid() {
+    if [[ -z "$1" ]] ; then 
+        return 1
+    elif [[ ${#1} -eq 1  ]] ; then
+        # Validate a single character login name
+        if [[ "$1" =~ $loginRegExp_start ]] ; then
+            return 0
+        else
+            return 1
+        fi
+    else   
+        # Validated multi character login name
+        if [[ "$1" =~ $loginRegExp_full ]] ; then
+            return 0
+        else
+            return 1
+        fi 
+    fi
 }
 
 readUserLoginName() {
@@ -86,12 +110,12 @@ readUserLoginName() {
 		elif [[ -z "$usr_login" ]]; then
 			printUserEmpty "Login Name"
 			read -p "$(echo -e "Enter User's Login Name: ")" usr_login
-		elif [[ "$usr_login" =~ ^[a-z][-a-z0-9]{0,$(( $(getconf LOGIN_NAME_MAX)-2 ))}[a-z0-9]$ ]]; then
+		elif [[ isLoginNameValid "$usr_login" ]]; then
 		    # Login Name is OK
 		    break
 		else
 		    printUserRegExp "Login Name"
-		    read -p "$(echo -e "Enter User's Login Name: ")" usr_login
+		    continue
 		fi
 	done
 	local -n loginName="$1"
