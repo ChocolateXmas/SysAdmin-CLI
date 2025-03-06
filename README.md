@@ -28,7 +28,8 @@ git clone https://github.com/ChocolateXmas/SysAdmin-CLI.git
 ```bash
 cd SysAdmin-CLI
 ```
-#### NOTE: SU Permissions are needed to run this script!
+> [!NOTE]
+> SU Permissions are needed to run this script!
 3. Run:
 ```bash
 sudo ./sysadmin.sh
