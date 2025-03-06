@@ -1,13 +1,19 @@
 #!/bin/bash
 
 # User Management Functions
-getUserList() {
-	cat /etc/passwd | grep "/home" | cut -s -d : -f1
+getInteractiveUserList() {
+	/usr/bin/getent passwd | awk -F: '$3 >= 1000 && $7 !~ /(nologin/false)/ {print $1}'
+}
+
+printUserList() {
+    local usr_list="$(getInteractiveUserList)"
+    echo "List of Users:"
+    printf ">> %s\n" $(echo -e "$usr_list") 
 }
 
 # True = 0 | False = 1
 isUserExist() {
-    if /usr/bin/id "$1" &>/dev/null && ; then
+    if /usr/bin/getent passwd "$1" &>/dev/null ; then
         # User Found / Exist
         return 0
     else
@@ -15,10 +21,23 @@ isUserExist() {
     fi
 }
 
-printUserList() {
-    local usr_list="$(getUserList)"
-    echo "List of Users:"
-    printf ">> %s\n" $(echo -e "$usr_list") 
+isUserModifiable() {
+    local userName="$1"
+    local user_entry uid shell
+    user_entry=$(/usr/bin/getent passwd "$userName")
+    # Enty does NOT Exist
+    if [[ -z "$user_entry" ]] ; then
+        return 1
+    fi
+    # Extract user group id (Field 3) and login shell (Field 7)
+    # Login shell should be differenet from "nologin", and different from "false"
+    uid=$(echo "$user_entry" | cut -d: -f3)
+    shell=$(echo "$user_entry" | cut -d: -f7)
+    if [[ "$uid" -ge 1000 ]] && [[ "$shell" != "/usr/bin/nologin" ]] && [[ "$shell" != "/bin/false" ]] ; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 printUserNotFound() { echo "ERROR: User <$1> NOT FOUND !"; } # $1 => User Display/Login Name
@@ -153,6 +172,10 @@ validateUserData() {
 	    printUserNotFound "$1"
 		return 1
 	fi
+    if ! isUserModifiable "$1" ;then
+        echo "User <$1> is a system account or not intended for modifications."
+        return 1;
+    fi
 	return 0
 }
 
