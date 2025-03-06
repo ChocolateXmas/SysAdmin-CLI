@@ -2,7 +2,7 @@
 
 # User Management Functions
 getInteractiveUserList() {
-	/usr/bin/getent passwd | awk -F: '$3 >= 1000 && $7 !~ /(nologin/false)/ {print $1}'
+	/usr/bin/getent passwd | awk -F: '$3 >= 1000 && $7 !~ /(nologin|false)/ {print $1}'
 }
 
 printUserList() {
