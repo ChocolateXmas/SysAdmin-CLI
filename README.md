@@ -7,7 +7,7 @@
   </a>
 
   <h1 align="center">SysAdmin-CLI</h1>
-  <h5 align="center">System Management</h5>
+  <h4 align="center">System Management</h4>
 
   <p align="center">
     A simple yet powerful Bash script for managing users, view system health, making backups and logs and much more on a Linux system.
@@ -53,7 +53,6 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-
 
 <!-- ABOUT THE PROJECT -->
 <a id="about-the-project"></a>
