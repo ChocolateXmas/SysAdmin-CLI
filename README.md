@@ -93,7 +93,7 @@ Before using this utility, ensure your system meets the following requirements.
 
 <a id="system-requirements"></a>
 
-### 🖥️ System Requirements  
+- ### 🖥️ System Requirements  
     - ✅ A **Linux** operating system (Ubuntu, Debian, Arch, etc.)  
     - ✅ A **Linux terminal** (Bash, Zsh, or Fish)
 
