@@ -3,10 +3,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/ChocolateXmas/SysAdmin-CLI">
-    <img src="images/logo.jpeg" alt="Logo" width="80" height="80">
+    <img src="images/logo.jpeg" alt="Logo" width="120" height="120">
   </a>
 
-  <h2 align="center">SysAdmin-CLI</h2>
+  <h1 align="center">SysAdmin-CLI</h1>
   <h5 align="center">System Management</h5>
 
   <p align="center">
@@ -60,7 +60,7 @@ This tool includes a range of essential features, from monitoring server health 
 
 <!-- BUILT WITH -->
 ## Built With
-*[![Bash Badge][bash-badge]](https://www.gnu.org/software/bash/)
+* [![Bash Badge][bash-badge]] (https://www.gnu.org/software/bash/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -71,22 +71,22 @@ Ensure you are using a Linux terminal and have navigated to your desired directo
 
 Before using this utility, ensure your system meets the following requirements.
 
-### 🖥️ System Requirements  
-✅ A **Linux** operating system (Ubuntu, Debian, Arch, etc.)  
-✅ A **Linux terminal** (Bash, Zsh, or Fish)
+- ### 🖥️ System Requirements  
+    - ✅ A **Linux** operating system (Ubuntu, Debian, Arch, etc.)  
+    - ✅ A **Linux terminal** (Bash, Zsh, or Fish)
 
-### 🔑 Required Permissions  
-🔹 **Root** or **sudo** access (for system management tasks)  
+- ### 🔑 Required Permissions  
+    - **Root** or **sudo** access (for system management tasks)  
 
-### 📚 Basic Knowledge
+- ### 📚 Basic Knowledge
 
-🔹 💡 Familiarity with Linux commands
-🔹 💡 Understanding of user and process management
+    - 💡 Familiarity with Linux commands
+    - 💡 Understanding of user and process management
 
-### 🎓 Recommended Knowledge
+- ### 🎓 Recommended Knowledge
 
-🔹 📖 Basic understanding of system administration
-🔹 📖 Working with shell scripting
+    - 📖 Basic understanding of system administration
+    - 📖 Working with shell scripting
 
 ### :information_source: Dependencies
 
