@@ -37,9 +37,9 @@
         <li>
             <a href="#prerequisites">Prerequisites ⚡</a>
             <ul>
-                <li><a href="#system-requirements"></a></a>
-                <li><a href="#required-permissions"></a></a>
-                <li><a href="#dependencies"></a></a>
+                <li><a href="#system-requirements">System Requirements</a></a>
+                <li><a href="#required-permissions">Required Permissions</a></a>
+                <li><a href="#dependencies"></a>Dependencies</a>
             </ul>
         </li>
         <li><a href="#installation">Installation 🔧</a></li>
