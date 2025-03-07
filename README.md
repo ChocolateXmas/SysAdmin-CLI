@@ -37,9 +37,9 @@
         <li>
             <a href="#prerequisites">Prerequisites ⚡</a>
             <ul>
-                <li><a href="#system-requirements">System Requirements</a></li>
-                <li><a href="#required-permissions">Required Permissions</a></li>
-                <li><a href="#dependencies">Dependencies</a></li>
+                <li><a href="#system-requirements">System Requirements 🖥️</a></li>
+                <li><a href="#required-permissions">Required Permissions 🔑</a></li>
+                <li><a href="#dependencies">Dependencies ℹ️</a></li>
             </ul>
         </li>
         <li><a href="#installation">Installation 🔧</a></li>
@@ -114,7 +114,7 @@ Before using this utility, ensure your system meets the following requirements.
 
 <a id="dependencies"></a>
 
-### :information_source: Dependencies
+### ℹ️ Dependencies 
 
 | Required | Version |
 | :---: | :---: |
@@ -162,7 +162,9 @@ Follow the on-screen prompts to manage users.
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 <br/>
-⚡ Get Started with SysAdmin CLI Today!
+<br/>
+
+# ⚡ Get Started with SysAdmin CLI Today!
 
 [bash-badge]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=#4EAA25
 [bash-icon]: https://img.shields.io/badge/-000000?style=flat-square&logo=gnubash&logoColor=#4EAA25
