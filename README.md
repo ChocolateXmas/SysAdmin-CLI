@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ChocolateXmas/SysAdmin-CLI">
-    <img src="images/logo.jpeg" style="border-radius: 10px" alt="Logo" width="120" height="120">
+    <img src="images/logo.jpeg" style="border-radius: 50%" alt="Logo" width="200" height="200">
   </a>
 
   <h1 align="center">SysAdmin-CLI</h1>
