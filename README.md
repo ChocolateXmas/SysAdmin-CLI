@@ -13,11 +13,11 @@
     A simple yet powerful Bash script for managing users, view system health, making backups and logs and much more on a Linux system.
     <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="">🎥 View Demo</a>
     &middot;
-    <a href="">Report Bug</a>
+    <a href="">🐞 Report Bug</a>
     &middot;
-    <a href="">Request Feature</a>
+    <a href="">✨ Request Feature</a>
   </p>
 </div>
 
@@ -49,7 +49,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About The Project 📝
 
 ![Program Screenshot][program-screenshot]
 <br/>
@@ -60,19 +60,19 @@ This tool includes a range of essential features, from monitoring server health 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- BUILT WITH -->
-## Built With
+## Built With 🛠️
 - [![Bash Badge][bash-badge]][bash-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started 🚀
 Ensure you are using a Linux terminal and have navigated to your desired directory.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- PREREQUISITES -->
-## ⚡ Prerequisites
+## Prerequisites ⚡
 
 Before using this utility, ensure your system meets the following requirements.
 
@@ -103,10 +103,10 @@ Before using this utility, ensure your system meets the following requirements.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- INSTALLATION -->
-## Installation
+## Installation 🔧
 
 > [!NOTE]
-> SU Permissions are needed to run this script!
+> ⚠️ SU Permissions are needed to run this script!
 
 Clone the repository, navigate to the directory, and execute the script:
 1. Clone the repository:
@@ -123,7 +123,7 @@ sudo ./sysadmin.sh
 ```
 Follow the on-screen prompts to manage users.
 
-## Features
+## Features ✨
 
 - **List All Users**: Displays a list of all users with home directories.
 - **Add New User**: Easily add a new user to the system.
@@ -134,7 +134,7 @@ Follow the on-screen prompts to manage users.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
-## License
+## License 📜
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 ⚡ Get Started with SysAdmin CLI Today!
