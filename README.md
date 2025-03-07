@@ -41,7 +41,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license 📜">License</a></li>
+    <li><a href="#license">License 📜</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -49,6 +49,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
+<a id="about-the-project"></a>
 ## About The Project 📝
 
 ![Program Screenshot][program-screenshot]
@@ -59,7 +60,7 @@ This tool includes a range of essential features, from monitoring server health 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- BUILT WITH 🛠️ -->
+<!-- BUILT WITH -->
 ## Built With 🛠️
 - [![Bash Badge][bash-badge]][bash-url]
 
@@ -134,7 +135,8 @@ Follow the on-screen prompts to manage users.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
-## License 📜
+## License 
+
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 <br/>
