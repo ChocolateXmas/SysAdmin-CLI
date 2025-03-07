@@ -50,6 +50,7 @@
 
 <!-- ABOUT THE PROJECT -->
 <a id="about-the-project"></a>
+
 ## About The Project 📝
 
 ![Program Screenshot][program-screenshot]
