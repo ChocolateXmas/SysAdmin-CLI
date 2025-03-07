@@ -99,16 +99,14 @@ Before using this utility, ensure your system meets the following requirements.
 
 <a id="required-permissions"></a>
 
-### 🔑 Required Permissions  
+- ### 🔑 Required Permissions  
     - **Root** or **sudo** access (for system management tasks)  
 
-### 📚 Basic Knowledge
-
+- ### 📚 Basic Knowledge
     - 💡 Familiarity with Linux commands
     - 💡 Understanding of user and process management
 
-### 🎓 Recommended Knowledge
-
+- ### 🎓 Recommended Knowledge
     - 📖 Basic understanding of system administration
     - 📖 Working with shell scripting
 
