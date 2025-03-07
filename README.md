@@ -137,6 +137,7 @@ Follow the on-screen prompts to manage users.
 ## License 📜
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
+<br/>
 ⚡ Get Started with SysAdmin CLI Today!
 
 [bash-badge]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=#4EAA25
