@@ -34,7 +34,14 @@
     <li>
       <a href="#getting-started">Getting Started 🚀</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites ⚡</a></li>
+        <li>
+            <a href="#prerequisites">Prerequisites ⚡</a>
+            <ul>
+                <li><a href="#system-requirements"></a></a>
+                <li><a href="#required-permissions"></a></a>
+                <li><a href="#dependencies"></a></a>
+            </ul>
+        </li>
         <li><a href="#installation">Installation 🔧</a></li>
       </ul>
     </li>
@@ -84,22 +91,28 @@ Ensure you are using a Linux terminal and have navigated to your desired directo
 
 Before using this utility, ensure your system meets the following requirements.
 
-- ### 🖥️ System Requirements  
+<a id="system-requirements"></a>
+
+### 🖥️ System Requirements  
     - ✅ A **Linux** operating system (Ubuntu, Debian, Arch, etc.)  
     - ✅ A **Linux terminal** (Bash, Zsh, or Fish)
 
-- ### 🔑 Required Permissions  
+<a id="required-permissions"></a>
+
+### 🔑 Required Permissions  
     - **Root** or **sudo** access (for system management tasks)  
 
-- ### 📚 Basic Knowledge
+### 📚 Basic Knowledge
 
     - 💡 Familiarity with Linux commands
     - 💡 Understanding of user and process management
 
-- ### 🎓 Recommended Knowledge
+### 🎓 Recommended Knowledge
 
     - 📖 Basic understanding of system administration
     - 📖 Working with shell scripting
+
+<a id="dependencies"></a>
 
 ### :information_source: Dependencies
 
