@@ -62,18 +62,24 @@ This tool includes a range of essential features, from monitoring server health 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- BUILT WITH -->
+<a id="built-with"></a>
+
 ## Built With 🛠️
 - [![Bash Badge][bash-badge]][bash-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+<a id="getting-started"></a>
+
 ## Getting Started 🚀
 Ensure you are using a Linux terminal and have navigated to your desired directory.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- PREREQUISITES -->
+<a id="prerequisites"></a>
+
 ## Prerequisites ⚡
 
 Before using this utility, ensure your system meets the following requirements.
@@ -105,6 +111,8 @@ Before using this utility, ensure your system meets the following requirements.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- INSTALLATION -->
+<a id="installation"></a>
+
 ## Installation 🔧
 
 > [!NOTE]
@@ -136,8 +144,8 @@ Follow the on-screen prompts to manage users.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
-## License 
-
+<a id="license"></a>
+## License 📜
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 <br/>
