@@ -51,7 +51,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Program Screenshot][program-screenshot]]
+![Program Screenshot][program-screenshot]
+<br/>
 As part of my DevOps learning journey, I took the opportunity to develop a utility that simplifies system management while incorporating my own unique approach.
 <br/>
 This tool includes a range of essential features, from monitoring server health and managing users through an intuitive menu to performing backups and more. My goal was to create a comprehensive solution that streamlines system administration and enhances usability.
@@ -60,11 +61,15 @@ This tool includes a range of essential features, from monitoring server health 
 
 <!-- BUILT WITH -->
 ## Built With
-* [![Bash Badge][bash-badge]] (https://www.gnu.org/software/bash/)
+* [![Bash Badge][bash-badge]][bash-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
 Ensure you are using a Linux terminal and have navigated to your desired directory.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- PREREQUISITES -->
 ## ⚡ Prerequisites
@@ -92,9 +97,10 @@ Before using this utility, ensure your system meets the following requirements.
 
 | Required | Version |
 | :---: | :---: |
-| [![Bash Icon][bash-icon]]Bash Shell | 4.3+ |
-| [![Linux Icon][linux-icon]]Linux/Unix | * |
+| [![Bash Icon][bash-icon]][bash-url]Bash Shell | 4.3+ |
+| ![Linux Icon][linux-icon]Linux/Unix | * |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- INSTALLATION -->
 ## Installation
@@ -117,7 +123,6 @@ sudo ./sysadmin.sh
 ```
 Follow the on-screen prompts to manage users.
 
-
 ## Features
 
 - **List All Users**: Displays a list of all users with home directories.
@@ -125,6 +130,8 @@ Follow the on-screen prompts to manage users.
 - **Delete User**: Remove users from the system.
 - **Modify User**: Update user properties (e.g., login name, display name, password, permissions).
 - **Service Management**: Control associated services for users.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
@@ -134,5 +141,6 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 [bash-badge]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=#4EAA25
 [bash-icon]: https://img.shields.io/badge/-000000?style=flat-square&logo=gnubash&logoColor=#4EAA25
+[bash-url]: https://www.gnu.org/software/bash/
 [linux-icon]: https://img.shields.io/badge/-000000?style=flat-square&logo=linux&logoColor=white
 [program-screenshot]: images/Screenshot_from_program.png
