@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ChocolateXmas/SysAdmin-CLI">
-    <img src="images/logo.jpeg" alt="Logo" width="120" height="120">
+    <img src="images/logo.jpeg" style="border-radius: 10px" alt="Logo" width="120" height="120">
   </a>
 
   <h1 align="center">SysAdmin-CLI</h1>
@@ -61,7 +61,7 @@ This tool includes a range of essential features, from monitoring server health 
 
 <!-- BUILT WITH -->
 ## Built With
-* [![Bash Badge][bash-badge]][bash-url]
+- [![Bash Badge][bash-badge]][bash-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
