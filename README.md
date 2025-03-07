@@ -59,7 +59,7 @@ This tool includes a range of essential features, from monitoring server health 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- BUILT WITH -->
+<!-- BUILT WITH 🛠️ -->
 ## Built With 🛠️
 - [![Bash Badge][bash-badge]][bash-url]
 
